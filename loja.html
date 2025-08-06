@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Óculos - Cherry Bomb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cherry-pink: #FF3576;
+            --cherry-red: #FF005C;
+            --cherry-dark: #1A1A1A;
+            --cherry-white: #FFFFFF;
+            --cherry-gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background: var(--cherry-dark) !important;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--cherry-pink) !important;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--cherry-white) !important;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cherry-pink) !important;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--cherry-pink) 0%, var(--cherry-red) 100%);
+            color: var(--cherry-white);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card {
+            background: var(--cherry-white);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--cherry-pink) 0%, var(--cherry-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cherry-white);
+            font-size: 4rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cherry-red);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-cherry {
+            background: linear-gradient(135deg, var(--cherry-pink) 0%, var(--cherry-red) 100%);
+            color: var(--cherry-white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cherry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,53,118,0.3);
+            color: var(--cherry-white);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--cherry-red);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--cherry-pink) 0%, var(--cherry-red) 100%);
+            color: var(--cherry-white);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cherry-pink);
+            color: var(--cherry-pink);
+        }
+
+        .btn-outline-secondary:hover {
+            background: var(--cherry-pink);
+            border-color: var(--cherry-pink);
+            color: var(--cherry-white);
+        }
+
+        .footer {
+            background: var(--cherry-dark);
+            color: var(--cherry-white);
+            padding: 50px 0 30px;
+        }
+
+        .footer-title {
+            color: var(--cherry-pink);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--cherry-white);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--cherry-pink);
+        }
+
+        .alert {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 60px 0 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-bomb me-2"></i>CHERRY BOMB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="loja.html">Nossos Óculos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#" onclick="showCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="header-section">
+        <div class="container text-center header-content">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="fas fa-sunglasses me-3"></i>NOSSOS ÓCULOS
+            </h1>
+            <p class="lead mb-0">São obras de arte! Descolado, tímido, moderno, elegante… não importa a sua vibe</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5" style="background: var(--cherry-gray);">
+        <div class="container">
+            <div class="row g-4" id="productsContainer">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-shopping-cart me-2"></i>Carrinho de Compras
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        <!-- Cart items will be displayed here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" class="btn btn-cherry" onclick="proceedToCheckout()">
+                        <i class="fas fa-credit-card me-2"></i>Finalizar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-bomb me-2"></i>CHERRY BOMB
+                    </h5>
+                    <p class="mb-3">Viemos pra adocicar o seu look. Misturamos a ousadia e irreverência dos anos 70/80 com a criatividade e a tecnologia dos dias de hoje para criar óculos escuros e acessórios cheios de atitude.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Contato</h5>
+                    <p class="mb-2">
+                        <i class="fas fa-phone me-2"></i>21 99832-8928
+                    </p>
+                    <p class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>comercial.deps@icloud.com
+                    </p>
+                    <p class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>Rio de Janeiro, RJ
+                    </p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Newsletter</h5>
+                    <p class="mb-3">Fique por dentro das novidades da CHERRYBOMB!</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Seu email" style="border-radius: 50px 0 0 50px; border: none;">
+                        <button class="btn btn-cherry" style="border-radius: 0 50px 50px 0;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2024 CHERRYBOMB. TODOS OS DIREITOS RESERVADOS.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample products data - Óculos Cherry Bomb
+        const products = [
+            {
+                id: 1,
+                name: "Gatinhos Cherry Bomb",
+                price: 129.90,
+                image: "https://via.placeholder.com/300x200/FF3576/ffffff?text=Gatinhos",
+                description: "Modelos gatinho - Os descolados"
+            },
+            {
+                id: 2,
+                name: "Armações de Metal",
+                price: 149.90,
+                image: "https://via.placeholder.com/300x200/FF005C/ffffff?text=Metal",
+                description: "Óculos escuros de metal - Clássicos"
+            },
+            {
+                id: 3,
+                name: "Clip-on Cherry Bomb",
+                price: 179.90,
+                image: "https://via.placeholder.com/300x200/FF3576/ffffff?text=Clip-on",
+                description: "2 em 1 - Rock n roll"
+            },
+            {
+                id: 4,
+                name: "Lentes Polarizadas",
+                price: 199.90,
+                image: "https://via.placeholder.com/300x200/FF005C/ffffff?text=Polarizadas",
+                description: "Proteção UV total - Alta qualidade"
+            },
+            {
+                id: 5,
+                name: "Modelo Vintage",
+                price: 159.90,
+                image: "https://via.placeholder.com/300x200/FF3576/ffffff?text=Vintage",
+                description: "Anos 70/80 - Estilo retrô"
+            },
+            {
+                id: 6,
+                name: "Óculos Modernos",
+                price: 139.90,
+                image: "https://via.placeholder.com/300x200/FF005C/ffffff?text=Modernos",
+                description: "Design atual - Tecnologia avançada"
+            },
+            {
+                id: 7,
+                name: "Coleção Limited",
+                price: 229.90,
+                image: "https://via.placeholder.com/300x200/FF3576/ffffff?text=Limited",
+                description: "Edição limitada - Exclusivo"
+            },
+            {
+                id: 8,
+                name: "Óculos Esportivos",
+                price: 189.90,
+                image: "https://via.placeholder.com/300x200/FF005C/ffffff?text=Esportivos",
+                description: "Performance e estilo - Atividade física"
+            },
+            {
+                id: 9,
+                name: "Aviador Cherry Bomb",
+                price: 169.90,
+                image: "https://exemplo.com/imagem-aviador.jpg",
+                description: "Clássico aviador com lentes polarizadas"
+            },
+            {
+                id: 10,
+                name: "Retrô Redondo",
+                price: 149.90,
+                image: "https://exemplo.com/imagem-retro.jpg",
+                description: "Estilo anos 60 com armação redonda"
+            }
+        ];
+
+        let cart = [];
+
+        // Load products
+        function loadProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = `
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card product-card h-100">
+                            <div class="product-image">
+                                <i class="fas fa-sunglasses"></i>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold">${product.name}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <div class="price mt-auto mb-3">R$ ${product.price.toFixed(2)}</div>
+                                <button class="btn btn-cherry" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-cart-plus me-2"></i>Adicionar ao Carrinho
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartCount();
+                showNotification('Óculos adicionado ao carrinho!');
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // Show cart
+        function showCart() {
+            const cartItems = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-center text-muted">Seu carrinho está vazio</p>';
+            } else {
+                let cartHTML = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    cartHTML += `
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0">${item.name}</h6>
+                                <small class="text-muted">R$ ${item.price.toFixed(2)} x ${item.quantity}</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-secondary me-2" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="mx-2">${item.quantity}</span>
+                                <button class="btn btn-sm btn-outline-secondary ms-2" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <span class="ms-3 fw-bold">R$ ${itemTotal.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartHTML += `
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total:</h5>
+                        <h5 class="text-primary">R$ ${total.toFixed(2)}</h5>
+                    </div>
+                `;
+                
+                cartItems.innerHTML = cartHTML;
+            }
+            
+            new bootstrap.Modal(document.getElementById('cartModal')).show();
+        }
+
+        // Update quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                updateCartCount();
+                showCart(); // Refresh cart display
+            }
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Adicione óculos ao carrinho primeiro!');
+                return;
+            }
+
+            // Monte o array de produtos no formato esperado pela InfinitePay
+            const items = cart.map(item => ({
+                name: item.name,
+                price: Math.round(item.price * 100), // preço em centavos
+                quantity: item.quantity
+            }));
+
+            // Handle da sua conta InfinitePay
+            const handle = "cherrybombnovaiguacu"; // Substitua pelo seu handle InfinitePay
+
+            // Número do pedido (pode ser um timestamp)
+            const order_nsu = Date.now();
+
+            // URL de redirecionamento após o pagamento
+            const redirect_url = "https://novaiguacu.cherrybombloja.com.br/sucesso.html";
+
+            // Monta o link integrado
+            const linkPagamento = `https://checkout.infinitepay.io/${handle}?items=${encodeURIComponent(JSON.stringify(items))}&order_nsu=${order_nsu}&redirect_url=${encodeURIComponent(redirect_url)}`;
+
+            // Redireciona para o checkout da InfinitePay
+            window.location.href = linkPagamento;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success position-fixed';
+            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle me-2"></i>${message}
+                <button type="button" class="btn-close ms-2" onclick="this.parentElement.remove()"></button>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
