@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --cherry-pink: #FF3576;
@@ -50,7 +51,9 @@
         }
 
         .hero-section {
-            background: linear-gradient(135deg, var(--cherry-pink) 0%, var(--cherry-red) 100%);
+            background: linear-gradient(135deg, rgba(255,53,118,0.7) 0%, rgba(255,0,92,0.7) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center 40%;
             color: var(--cherry-white);
             padding: 120px 0;
             position: relative;
@@ -247,6 +250,37 @@
             font-weight: 600;
         }
 
+        .cart-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1050;
+            background: var(--cherry-pink);
+            color: #fff;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cart-float:hover {
+            background: var(--cherry-red);
+        }
+        .cart-badge-float {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #fff;
+            color: var(--cherry-red);
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -254,6 +288,17 @@
             
             .section-title {
                 font-size: 2rem;
+            }
+            .cart-float {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+            }
+            .cart-badge-float {
+                top: 4px;
+                right: 4px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -286,9 +331,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" data-aos="fade-down">
         <div class="container text-center hero-content">
-            <h1 class="hero-title">HELLO DADDY! HELLO MOM!</h1>
+            <h1 class="hero-title" data-aos="zoom-in">HELLO DADDY! HELLO MOM!</h1>
             <h2 class="hero-subtitle">OS ÓCULOS QUE BOMBAM</h2>
             <p class="lead mb-4">Democratizar a moda com óculos escuros e armações de qualidade, design atual, variedade e garantia.</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
@@ -357,7 +402,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up">
                     <div class="card product-card">
                         <div class="product-image" style="background: linear-gradient(135deg, #FF6B9D 0%, #FF3576 100%);">
                             <img src="imagens/Oculos01.jpg" alt="Gatinhos Cherry Bomb" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
@@ -369,10 +414,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card product-card">
                         <div class="product-image" style="background: linear-gradient(135deg, #FF6B9D 0%, #FF3576 100%);">
-                            <img src="imagens/oculos02.jpg" alt="Armações de Metal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
+                            <img src="imagens/Oculos02.jpg" alt="Armações de Metal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold">Armações de Metal</h5>
@@ -381,10 +426,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card product-card">
                         <div class="product-image" style="background: linear-gradient(135deg, #FF6B9D 0%, #FF3576 100%);">
-                            <img src="imagens/oculos03.png" alt="Clip-on" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
+                            <img src="imagens/Oculos03.png" alt="Clip-on" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold">Clip-on</h5>
@@ -398,7 +443,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" data-aos="fade-up">
         <div class="container text-center">
             <h3 class="fw-bold mb-3" style="font-size: 2.5rem;">ÓCULOS EXPLOSIVOS</h3>
             <h4 class="mb-4" style="font-size: 1.8rem;">I'm your ch ch ch Cherry Bomb</h4>
@@ -410,7 +455,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -458,6 +503,11 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200 // duração em milissegundos (1.2 segundos)
+      });
+    </script>
 </body>
 </html>
-
