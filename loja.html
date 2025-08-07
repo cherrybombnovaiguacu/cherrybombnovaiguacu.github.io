@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --cherry-pink: #FF3576;
@@ -320,6 +321,12 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200 // duração em milissegundos (1.2 segundos)
+      });
+    </script>
     <script>
         // Sample products data - Óculos Cherry Bomb
         const products = [
@@ -404,7 +411,7 @@
                 id: 12,
                 name: "Modelo Exclusivo",
                 price: 279.90,
-                image: "imagens/oculos 13.jpg",
+                image: "imagens/oculos13.jpg",
                 description: "Design exclusivo - Edição especial"
             },
             {
@@ -432,7 +439,7 @@
                 id: 16,
                 name: "Modelo Elegante",
                 price: 199.90,
-                image: "imagens/oculos 17.jpg",
+                image: "imagens/oculos17.jpg",
                 description: "Elegância e sofisticação - Para ocasiões especiais"
             },
             {
@@ -459,10 +466,94 @@
             {
                 id: 20,
                 name: "Coleção Cherry Bomb",
-                price: 299.90,
-                image: "imagens/oculos 13.jpg",
+                price: 219.90,
+                image: "imagens/óculos 13.jpg",
                 description: "Coleção especial Cherry Bomb - Única e exclusiva"
-            }
+            },
+            {
+                id: 21,
+                name: "Cherry Cat Eye",
+                price: 219.90,
+                image: "imagens/oculos21.jpg",
+                description: "Estilo retrô com ousadia felina"
+            },
+            {
+                id: 22,
+                name: "Bombshell Retrô",
+                price: 219.90,
+                image: "imagens/oculos22.jpg",
+                description: "Clássico repaginado, puro charme"
+            },
+            {
+                id: 23,
+                name: "Sweet Punk",
+                price: 219.90,
+                image: "imagens/oculos23.jpg",
+                description: "Atitude Cherry com toque rebelde"
+            },
+            {
+                id: 24,
+                name: "Cherry Glam",
+                price: 219.90,
+                image: "imagens/oculos24.jpg",
+                description: "Brilho e glamour para arrasar"
+            },
+            {
+                id: 25,
+                name: "Pop Star Bomb",
+                price: 219.90,
+                image: "imagens/oculos25.jpg",
+                description: "Inspire-se nas divas do pop"
+            },
+            {
+                id: 26,
+                name: "Cherry Wave",
+                price: 219.90,
+                image: "imagens/oculos26.jpg",
+                description: "Ondas de estilo e personalidade"
+            },
+            {
+                id: 27,
+                name: "Disco Fever",
+                price: 219.90,
+                image: "imagens/oculos27.jpg",
+                description: "Direto dos anos 70 para seu look"
+            },
+            {
+                id: 28,
+                name: "Cherry Stardust",
+                price: 219.90,
+                image: "imagens/oculos28.jpg",
+                description: "Brilhe como uma estrela Cherry"
+            },
+            {
+                id: 29,
+                name: "Rockabilly Bomb",
+                price: 219.90,
+                image: "imagens/oculos29.jpg",
+                description: "Vintage com pegada rock'n'roll"
+            },
+            {
+                id: 30,
+                name: "Cherry Groove",
+                price: 219.90,
+                image: "imagens/oculos30.jpg",
+                description: "Entre no ritmo do estilo Cherry"
+            },
+            {
+                id: 31,
+                name: "Funky Cherry",
+                price: 219.90,
+                image: "imagens/oculos31.jpg",
+                description: "Óculos para quem tem atitude e cor"
+            },
+            {
+                id: 32,
+                name: "Cherry Dream",
+                price: 219.90,
+                image: "imagens/oculos32.jpg",
+                description: "Para sonhar e brilhar com Cherry Bomb"
+            },
         ];
 
         let cart = [];
@@ -472,9 +563,9 @@
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
 
-            products.forEach(product => {
+            products.forEach((product, idx) => {
                 const productCard = `
-                    <div class="col-md-6 col-lg-3">
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${(idx%4)*100}">
                         <div class="card product-card h-100">
                             <div class="product-image">
                                 <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
