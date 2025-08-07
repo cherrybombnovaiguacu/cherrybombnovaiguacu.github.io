@@ -158,12 +158,68 @@
             color: var(--cherry-pink);
         }
     </style>
+</head>
+<body>
+    <!-- Navbar -->
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-bomb me-2"></i>CHERRY BOMB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lancamentos">Lançamentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="loja.html">Coleções</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#beneficios">Benefícios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#depoimentos">Depoimentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center" style="min-height: 80vh;">
+        <div class="container text-center hero-content" data-aos="fade-down">
+            <h1 class="hero-title">EXPLODA SEU ESTILO</h1>
+            <h2 class="hero-subtitle">ÓCULOS QUE SÃO UMA BOMBA DE ATITUDE</h2>
+            <p class="lead mb-4">Descubra o poder das lentes Cherry Bomb: design retrô, tecnologia moderna e muita personalidade.</p>
+            <a href="#lancamentos" class="btn btn-cherry btn-lg">Ver Lançamentos</a>
+        </div>
+    </section>
+    <!-- Banner Duplo Cherry Bomb -->
+    <section class="par-perfeito-banner d-flex align-items-stretch w-100" style="min-height: 320px;">
+      <div class="par-perfeito-left d-flex flex-column justify-content-center align-items-start px-5 flex-fill">
+        <span class="par-perfeito-subtitle mb-2">proteção com estilo</span>
+        <h2 class="par-perfeito-title mb-2">ÓCULOS DE SOL</h2>
+        <p class="par-perfeito-desc mb-3">Clique e conheça nossa coleção de óculos multlentes.<br>Transforme seus óculos de grau para sol com o clip-on.</p>
+        <a href="loja.html#productsContainer" class="btn par-perfeito-btn">Ver modelos</a>
+      </div>
+      <div class="par-perfeito-center d-flex flex-column justify-content-center align-items-center position-relative flex-shrink-0">
+        <span class="par-perfeito-main-title">NÓS FAZEMOS O PAR PERFEITO</span>
+        <div class="par-perfeito-img-hover">
+  <img src="imagens/oculos-sol.jpg" alt="Óculos de Sol" class="par-perfeito-img img-top">
+  <img src="imagens/oculos-grau.jpg" alt="Óculos de Grau" class="par-perfeito-img img-bottom">
+</div>
+      </div>
+      <div class="par-perfeito-right d-flex flex-column justify-content-center align-items-start px-5 flex-fill bg-white">
+        <span class="par-perfeito-subtitle mb-2 text-muted">para o seu uso diário</span>
+        <h2 class="par-perfeito-title mb-2 text-dark">ÓCULOS DE GRAU</h2>
+        <p class="par-perfeito-desc mb-3 text-dark">Agora você pode comprar sua armação com lentes para grau e receber em casa pronto para sair usando.</p>
+        <a href="loja.html#productsContainer" class="btn par-perfeito-btn btn-outline-dark">Ver modelos</a>
+      </div>
+    </section>
+    <!-- Lançamentos Carousel -->
+
     <style>
-    /* Banner Duplo Par Perfeito */
+    /* Banner Duplo Par Perfeito - Cherry Bomb Brand */
     .par-perfeito-banner {
       width: 100%;
       min-height: 320px;
-      background: linear-gradient(90deg, #FFB100 0% 50%, #fff 50% 100%);
+      background: linear-gradient(90deg, var(--cherry-pink) 0% 50%, var(--cherry-red) 50% 100%);
       border-radius: 0 0 36px 36px;
       box-shadow: 0 6px 32px rgba(255,53,118,0.07);
       margin-bottom: 0;
@@ -203,9 +259,9 @@
       font-family: 'Poppins', sans-serif;
       font-size: 2.1rem;
       font-weight: 900;
-      color: #111;
+      color: #fff;
       letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(255,255,255,0.38);
+      text-shadow: 0 2px 8px rgba(26,26,26,0.18);
       z-index: 4;
       white-space: nowrap;
       text-align: center;
@@ -226,6 +282,14 @@
       font-weight: 800;
       letter-spacing: 0.5px;
       margin-bottom: 0.2rem;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(26,26,26,0.08);
+    }
+    .par-perfeito-left .par-perfeito-title {
+      color: #fff;
+    }
+    .par-perfeito-right .par-perfeito-title {
+      color: var(--cherry-red);
     }
     .par-perfeito-subtitle {
       font-size: 1rem;
@@ -234,6 +298,11 @@
       letter-spacing: 0.02em;
       margin-bottom: 0.2rem;
       text-transform: lowercase;
+      color: #fff;
+    }
+    .par-perfeito-right .par-perfeito-subtitle {
+      color: var(--cherry-pink);
+      opacity: 0.8;
     }
     .par-perfeito-desc {
       font-size: 1.02rem;
@@ -241,6 +310,12 @@
       margin-bottom: 1.1rem;
       opacity: 0.97;
       max-width: 340px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(26,26,26,0.05);
+    }
+    .par-perfeito-right .par-perfeito-desc {
+      color: #222;
+      text-shadow: none;
     }
     .par-perfeito-btn {
       border-radius: 30px;
@@ -248,7 +323,7 @@
       font-size: 1rem;
       padding: 8px 32px;
       background: #fff;
-      color: #FFB100;
+      color: var(--cherry-pink);
       border: none;
       box-shadow: 0 2px 12px rgba(255,53,118,0.08);
       transition: all 0.23s;
@@ -256,17 +331,17 @@
       letter-spacing: 0.03em;
     }
     .par-perfeito-btn:hover {
-      background: #FF3576;
+      background: var(--cherry-pink);
       color: #fff;
       box-shadow: 0 8px 24px rgba(255,53,118,0.13);
     }
     .par-perfeito-right .par-perfeito-btn {
-      background: #222;
+      background: var(--cherry-pink);
       color: #fff;
       border: none;
     }
     .par-perfeito-right .par-perfeito-btn:hover {
-      background: #FF3576;
+      background: var(--cherry-red);
       color: #fff;
     }
     @media (max-width: 900px) {
@@ -283,58 +358,7 @@
       .par-perfeito-title { font-size: 1.1rem; }
     }
     </style>
-</head>
-<body>
-    <!-- Navbar -->
 
-    <!-- Banner Duplo Cherry Bomb -->
-    <section class="par-perfeito-banner d-flex align-items-stretch w-100" style="min-height: 320px;">
-      <div class="par-perfeito-left d-flex flex-column justify-content-center align-items-start px-5 flex-fill">
-        <span class="par-perfeito-subtitle mb-2">proteção com estilo</span>
-        <h2 class="par-perfeito-title mb-2">ÓCULOS DE SOL</h2>
-        <p class="par-perfeito-desc mb-3">Clique e conheça nossa coleção de óculos multlentes.<br>Transforme seus óculos de grau para sol com o clip-on.</p>
-        <a href="loja.html#productsContainer" class="btn par-perfeito-btn">Ver modelos</a>
-      </div>
-      <div class="par-perfeito-center d-flex flex-column justify-content-center align-items-center position-relative flex-shrink-0">
-        <span class="par-perfeito-main-title">NÓS FAZEMOS O PAR PERFEITO</span>
-        <img src="imagens/oculos23.jpg" alt="Óculos Cherry Bomb" class="par-perfeito-img">
-      </div>
-      <div class="par-perfeito-right d-flex flex-column justify-content-center align-items-start px-5 flex-fill bg-white">
-        <span class="par-perfeito-subtitle mb-2 text-muted">para o seu uso diário</span>
-        <h2 class="par-perfeito-title mb-2 text-dark">ÓCULOS DE GRAU</h2>
-        <p class="par-perfeito-desc mb-3 text-dark">Agora você pode comprar sua armação com lentes para grau e receber em casa pronto para sair usando.</p>
-        <a href="loja.html#productsContainer" class="btn par-perfeito-btn btn-outline-dark">Ver modelos</a>
-      </div>
-    </section>
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-bomb me-2"></i>CHERRY BOMB</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#lancamentos">Lançamentos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="loja.html">Coleções</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#beneficios">Benefícios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#depoimentos">Depoimentos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Hero Section -->
-    <section class="hero-section d-flex align-items-center" style="min-height: 80vh;">
-        <div class="container text-center hero-content" data-aos="fade-down">
-            <h1 class="hero-title">EXPLODA SEU ESTILO</h1>
-            <h2 class="hero-subtitle">ÓCULOS QUE SÃO UMA BOMBA DE ATITUDE</h2>
-            <p class="lead mb-4">Descubra o poder das lentes Cherry Bomb: design retrô, tecnologia moderna e muita personalidade.</p>
-            <a href="#lancamentos" class="btn btn-cherry btn-lg">Ver Lançamentos</a>
-        </div>
-    </section>
-    <!-- Lançamentos Carousel -->
     <section id="lancamentos" class="py-5">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Lançamentos</h2>
