@@ -158,9 +158,155 @@
             color: var(--cherry-pink);
         }
     </style>
+    <style>
+    /* Banner Duplo Par Perfeito */
+    .par-perfeito-banner {
+      width: 100%;
+      min-height: 320px;
+      background: linear-gradient(90deg, #FFB100 0% 50%, #fff 50% 100%);
+      border-radius: 0 0 36px 36px;
+      box-shadow: 0 6px 32px rgba(255,53,118,0.07);
+      margin-bottom: 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    .par-perfeito-left {
+      background: transparent;
+      flex: 1 1 0%;
+      min-width: 220px;
+      color: #fff;
+      padding: 40px 32px 40px 7vw;
+    }
+    .par-perfeito-right {
+      background: #fff;
+      flex: 1 1 0%;
+      min-width: 220px;
+      color: #222;
+      padding: 40px 7vw 40px 32px;
+    }
+    .par-perfeito-center {
+      min-width: 270px;
+      max-width: 340px;
+      background: transparent;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      padding: 0 18px;
+    }
+    .par-perfeito-main-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.38);
+      z-index: 4;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .par-perfeito-img {
+      width: 230px;
+      max-width: 95vw;
+      height: auto;
+      display: block;
+      margin: 60px auto 0 auto;
+      z-index: 5;
+      filter: drop-shadow(0 8px 24px rgba(255,53,118,0.12));
+      background: transparent;
+    }
+    .par-perfeito-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+    .par-perfeito-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.85;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
+      text-transform: lowercase;
+    }
+    .par-perfeito-desc {
+      font-size: 1.02rem;
+      font-weight: 400;
+      margin-bottom: 1.1rem;
+      opacity: 0.97;
+      max-width: 340px;
+    }
+    .par-perfeito-btn {
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 8px 32px;
+      background: #fff;
+      color: #FFB100;
+      border: none;
+      box-shadow: 0 2px 12px rgba(255,53,118,0.08);
+      transition: all 0.23s;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .par-perfeito-btn:hover {
+      background: #FF3576;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(255,53,118,0.13);
+    }
+    .par-perfeito-right .par-perfeito-btn {
+      background: #222;
+      color: #fff;
+      border: none;
+    }
+    .par-perfeito-right .par-perfeito-btn:hover {
+      background: #FF3576;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .par-perfeito-banner { flex-direction: column; min-height: unset; border-radius: 0 0 24px 24px; }
+      .par-perfeito-center { order: -1; min-width: 100%; max-width: 100vw; padding: 0; }
+      .par-perfeito-img { margin: 24px auto 0 auto; width: 180px; }
+      .par-perfeito-main-title { position: static; transform: none; font-size: 1.4rem; margin-bottom: 0.8rem; }
+      .par-perfeito-left, .par-perfeito-right { padding: 30px 5vw; min-width: unset; }
+    }
+    @media (max-width: 600px) {
+      .par-perfeito-banner { border-radius: 0 0 12px 12px; }
+      .par-perfeito-img { width: 120px; }
+      .par-perfeito-main-title { font-size: 1.05rem; }
+      .par-perfeito-title { font-size: 1.1rem; }
+    }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
+
+    <!-- Banner Duplo Cherry Bomb -->
+    <section class="par-perfeito-banner d-flex align-items-stretch w-100" style="min-height: 320px;">
+      <div class="par-perfeito-left d-flex flex-column justify-content-center align-items-start px-5 flex-fill">
+        <span class="par-perfeito-subtitle mb-2">proteção com estilo</span>
+        <h2 class="par-perfeito-title mb-2">ÓCULOS DE SOL</h2>
+        <p class="par-perfeito-desc mb-3">Clique e conheça nossa coleção de óculos multlentes.<br>Transforme seus óculos de grau para sol com o clip-on.</p>
+        <a href="loja.html#productsContainer" class="btn par-perfeito-btn">Ver modelos</a>
+      </div>
+      <div class="par-perfeito-center d-flex flex-column justify-content-center align-items-center position-relative flex-shrink-0">
+        <span class="par-perfeito-main-title">NÓS FAZEMOS O PAR PERFEITO</span>
+        <img src="imagens/oculos23.jpg" alt="Óculos Cherry Bomb" class="par-perfeito-img">
+      </div>
+      <div class="par-perfeito-right d-flex flex-column justify-content-center align-items-start px-5 flex-fill bg-white">
+        <span class="par-perfeito-subtitle mb-2 text-muted">para o seu uso diário</span>
+        <h2 class="par-perfeito-title mb-2 text-dark">ÓCULOS DE GRAU</h2>
+        <p class="par-perfeito-desc mb-3 text-dark">Agora você pode comprar sua armação com lentes para grau e receber em casa pronto para sair usando.</p>
+        <a href="loja.html#productsContainer" class="btn par-perfeito-btn btn-outline-dark">Ver modelos</a>
+      </div>
+    </section>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="fas fa-bomb me-2"></i>CHERRY BOMB</a>
