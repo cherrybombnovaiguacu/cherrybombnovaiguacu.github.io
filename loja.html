@@ -115,6 +115,20 @@
             box-shadow: 0 6px 14px rgba(255,53,118,0.25);
         }
 
+        /* Hover swap images */
+        .product-image img.swap {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity .35s ease, transform .35s ease;
+        }
+        .product-image img.primary-image { opacity: 1; z-index: 1; }
+        .product-image img.hover-image { opacity: 0; z-index: 2; }
+        .product-card:hover .product-image img.primary-image { opacity: 0; transform: scale(1.03); }
+        .product-card:hover .product-image img.hover-image { opacity: 1; transform: scale(1.03); }
+
         .price {
             font-size: 1.5rem;
             font-weight: 700;
@@ -446,6 +460,7 @@
                 name: "Gatinhos Cherry Bomb",
                 price: 129.90,
                 image: "imagens/Oculos01.jpg",
+                hoverImage: "imagens/oculos05.jpg",
                 description: "Modelos gatinho - Os descolados"
             },
             {
@@ -453,6 +468,7 @@
                 name: "Armações de Metal",
                 price: 149.90,
                 image: "imagens/oculos02.jpg",
+                hoverImage: "imagens/oculos06.jpg",
                 description: "Óculos escuros de metal - Clássicos"
             },
             {
@@ -460,6 +476,7 @@
                 name: "Clip-on Cherry Bomb",
                 price: 179.90,
                 image: "imagens/oculos03.png",
+                hoverImage: "imagens/oculos07.jpg",
                 description: "2 em 1 - Rock n roll"
             },
             {
@@ -467,6 +484,7 @@
                 name: "Lentes Polarizadas",
                 price: 199.90,
                 image: "imagens/oculos04.jpg",
+                hoverImage: "imagens/oculos08.jpg",
                 description: "Proteção UV total - Alta qualidade"
             },
             {
@@ -474,6 +492,7 @@
                 name: "Modelo Vintage",
                 price: 159.90,
                 image: "imagens/oculos05.jpg",
+                hoverImage: "imagens/oculos10.jpg",
                 description: "Anos 70/80 - Estilo retrô"
             },
             {
@@ -481,6 +500,7 @@
                 name: "Óculos Modernos",
                 price: 139.90,
                 image: "imagens/oculos06.jpg",
+                hoverImage: "imagens/oculos12.jpg",
                 description: "Design atual - Tecnologia avançada"
             },
             {
@@ -488,6 +508,7 @@
                 name: "Coleção Limited",
                 price: 229.90,
                 image: "imagens/oculos07.jpg",
+                hoverImage: "imagens/oculos14.jpg",
                 description: "Edição limitada - Exclusivo"
             },
             {
@@ -495,6 +516,7 @@
                 name: "Óculos Esportivos",
                 price: 189.90,
                 image: "imagens/oculos08.jpg",
+                hoverImage: "imagens/oculos15.jpg",
                 description: "Performance e estilo - Atividade física"
             },
             {
@@ -502,6 +524,7 @@
                 name: "Aviador Cherry Bomb",
                 price: 169.90,
                 image: "imagens/oculos09.jpg",
+                hoverImage: "imagens/oculos16.jpg",
                 description: "Clássico aviador com lentes polarizadas"
             },
             {
@@ -509,6 +532,7 @@
                 name: "Retrô Redondo",
                 price: 149.90,
                 image: "imagens/oculos10.jpg",
+                hoverImage: "imagens/oculos18.jpg",
                 description: "Estilo anos 60 com armação redonda"
             },
             {
@@ -516,6 +540,7 @@
                 name: "Óculos Premium",
                 price: 249.90,
                 image: "imagens/oculos12.jpg",
+                hoverImage: "imagens/oculos19.jpg",
                 description: "Qualidade premium - Máximo conforto"
             },
             {
@@ -523,6 +548,7 @@
                 name: "Modelo Exclusivo",
                 price: 279.90,
                 image: "imagens/oculos 13.jpg",
+                hoverImage: "imagens/oculos20.jpg",
                 description: "Design exclusivo - Edição especial"
             },
             {
@@ -530,6 +556,7 @@
                 name: "Óculos Clássico",
                 price: 189.90,
                 image: "imagens/oculos14.jpg",
+                hoverImage: "imagens/oculos21.jpg",
                 description: "Estilo atemporal - Sempre na moda"
             },
             {
@@ -537,6 +564,7 @@
                 name: "Aviador Premium",
                 price: 219.90,
                 image: "imagens/oculos15.jpg",
+                hoverImage: "imagens/oculos22.jpg",
                 description: "Aviador premium com lentes especiais"
             },
             {
@@ -544,6 +572,7 @@
                 name: "Óculos Esportivo Pro",
                 price: 259.90,
                 image: "imagens/oculos16.jpg",
+                hoverImage: "imagens/oculos23.jpg",
                 description: "Performance profissional - Alta tecnologia"
             },
             {
@@ -551,6 +580,7 @@
                 name: "Modelo Elegante",
                 price: 199.90,
                 image: "imagens/oculos 17.jpg",
+                hoverImage: "imagens/oculos24.jpg",
                 description: "Elegância e sofisticação - Para ocasiões especiais"
             },
             {
@@ -558,6 +588,7 @@
                 name: "Óculos Casual",
                 price: 169.90,
                 image: "imagens/oculos18.jpg",
+                hoverImage: "imagens/oculos25.jpg",
                 description: "Estilo casual - Perfeito para o dia a dia"
             },
             {
@@ -565,6 +596,7 @@
                 name: "Aviador Sport",
                 price: 239.90,
                 image: "imagens/oculos19.jpg",
+                hoverImage: "imagens/oculos26.jpg",
                 description: "Aviador esportivo - Resistente e moderno"
             },
             {
@@ -572,6 +604,7 @@
                 name: "Óculos Fashion",
                 price: 189.90,
                 image: "imagens/oculos20.jpg",
+                hoverImage: "imagens/oculos27.jpg",
                 description: "Tendência fashion - Design contemporâneo"
             },
             {
@@ -579,6 +612,7 @@
                 name: "Coleção Cherry Bomb",
                 price: 219.90,
                 image: "imagens/oculos 13.jpg",
+                hoverImage: "imagens/oculos28.jpg",
                 description: "Coleção especial Cherry Bomb - Única e exclusiva"
             },
             {
@@ -586,6 +620,7 @@
                 name: "Cherry Cat Eye",
                 price: 219.90,
                 image: "imagens/oculos21.jpg",
+                hoverImage: "imagens/oculos24.jpg",
                 description: "Estilo retrô com ousadia felina"
             },
             {
@@ -593,6 +628,7 @@
                 name: "Bombshell Retrô",
                 price: 219.90,
                 image: "imagens/oculos22.jpg",
+                hoverImage: "imagens/oculos23.jpg",
                 description: "Clássico repaginado, puro charme"
             },
             {
@@ -600,6 +636,7 @@
                 name: "Sweet Punk",
                 price: 219.90,
                 image: "imagens/oculos23.jpg",
+                hoverImage: "imagens/oculos21.jpg",
                 description: "Atitude Cherry com toque rebelde"
             },
             {
@@ -607,6 +644,7 @@
                 name: "Cherry Glam",
                 price: 219.90,
                 image: "imagens/oculos24.jpg",
+                hoverImage: "imagens/oculos29.jpg",
                 description: "Brilho e glamour para arrasar"
             },
             {
@@ -614,6 +652,7 @@
                 name: "Pop Star Bomb",
                 price: 219.90,
                 image: "imagens/oculos25.jpg",
+                hoverImage: "imagens/oculos30.jpg",
                 description: "Inspire-se nas divas do pop"
             },
             {
@@ -621,6 +660,7 @@
                 name: "Cherry Wave",
                 price: 219.90,
                 image: "imagens/oculos26.jpg",
+                hoverImage: "imagens/oculos31.jpg",
                 description: "Ondas de estilo e personalidade"
             },
             {
@@ -628,6 +668,7 @@
                 name: "Disco Fever",
                 price: 219.90,
                 image: "imagens/oculos27.jpg",
+                hoverImage: "imagens/oculos32.jpg",
                 description: "Direto dos anos 70 para seu look"
             },
             {
@@ -635,6 +676,7 @@
                 name: "Cherry Stardust",
                 price: 219.90,
                 image: "imagens/oculos28.jpg",
+                hoverImage: "imagens/oculos29.jpg",
                 description: "Brilhe como uma estrela Cherry"
             },
             {
@@ -642,6 +684,7 @@
                 name: "Rockabilly Bomb",
                 price: 219.90,
                 image: "imagens/oculos29.jpg",
+                hoverImage: "imagens/oculos30.jpg",
                 description: "Vintage com pegada rock'n'roll"
             },
             {
@@ -649,6 +692,7 @@
                 name: "Cherry Groove",
                 price: 219.90,
                 image: "imagens/oculos30.jpg",
+                hoverImage: "imagens/oculos31.jpg",
                 description: "Entre no ritmo do estilo Cherry"
             },
             {
@@ -656,6 +700,7 @@
                 name: "Funky Cherry",
                 price: 219.90,
                 image: "imagens/oculos31.jpg",
+                hoverImage: "imagens/oculos32.jpg",
                 description: "Óculos para quem tem atitude e cor"
             },
             {
@@ -663,6 +708,7 @@
                 name: "Cherry Dream",
                 price: 219.90,
                 image: "imagens/oculos32.jpg",
+                hoverImage: "imagens/oculos28.jpg",
                 description: "Para sonhar e brilhar com Cherry Bomb"
             },
         ];
@@ -738,7 +784,8 @@
                         <div class="card product-card h-100">
                             <div class="product-image">
                                 ${isNew ? '<span class="ribbon">NOVO</span>' : ''}
-                                <img src="${product.image}" alt="${product.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="${product.image}" alt="${product.name}" loading="lazy" class="swap primary-image">
+                                <img src="${product.hoverImage || product.image}" alt="${product.name} alternativo" loading="lazy" class="swap hover-image" aria-hidden="true">
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-bold">${product.name}</h5>
