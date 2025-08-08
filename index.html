@@ -22,9 +22,29 @@
             background: var(--cherry-gray);
             color: var(--cherry-dark);
         }
+        /* Topbar promocional global */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #FF3576 0%, #FF005C 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            z-index: 1031;
+        }
+        .topbar a { color: #fff; text-decoration: underline; }
+
         .navbar {
             background: rgba(26,26,26,0.95) !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            top: 36px; /* compensa topbar fixa */
         }
         .navbar-brand {
             font-family: 'Poppins', sans-serif;
@@ -157,16 +177,40 @@
         .social-links a:hover {
             color: var(--cherry-pink);
         }
+        /* Botão flutuante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+            z-index: 1031;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,211,102,0.45); }
     </style>
 </head>
 <body>
+    <div class="topbar text-center px-3">
+        <span>
+            Frete grátis acima de R$ 299 • Primeira troca por nossa conta • 6x sem juros
+            <span class="d-none d-sm-inline"> • <a href="https://wa.link/udiiux" target="_blank" rel="noopener">Fale no WhatsApp</a></span>
+        </span>
+    </div>
     <!-- Navbar -->
 
     
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="fas fa-bomb me-2"></i>CHERRY BOMB</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Abrir navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -187,7 +231,10 @@
             <h1 class="hero-title">EXPLODA SEU ESTILO</h1>
             <h2 class="hero-subtitle">ÓCULOS QUE SÃO UMA BOMBA DE ATITUDE</h2>
             <p class="lead mb-4">Descubra o poder das lentes Cherry Bomb: design retrô, tecnologia moderna e muita personalidade.</p>
-            <a href="#lancamentos" class="btn btn-cherry btn-lg">Ver Lançamentos</a>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#lancamentos" class="btn btn-cherry btn-lg" aria-label="Ver lançamentos">Ver Lançamentos</a>
+                <a href="loja.html#productsContainer" class="btn btn-light btn-lg" style="border-radius:50px; font-weight:700;" aria-label="Ver coleção completa">Ver Coleção</a>
+            </div>
         </div>
     </section>
     
@@ -380,10 +427,10 @@
                     </div>
                     <!-- Adicione mais carousel-item para mais lançamentos -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="prev" aria-label="Anterior">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="next" aria-label="Próximo">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             </div>
@@ -513,6 +560,10 @@
             </div>
         </div>
     </footer>
+
+    <a class="whatsapp-float" href="https://wa.link/udiiux" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+        <i class="fab fa-whatsapp fa-lg"></i>
+    </a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://unpkg.com/twentytwenty/js/jquery.twentytwenty.js"></script>
