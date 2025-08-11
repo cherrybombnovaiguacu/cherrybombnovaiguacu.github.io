@@ -22,29 +22,9 @@
             background: var(--cherry-gray);
             color: var(--cherry-dark);
         }
-        /* Topbar promocional global */
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(90deg, #FF3576 0%, #FF005C 100%);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.03em;
-            z-index: 1031;
-        }
-        .topbar a { color: #fff; text-decoration: underline; }
-
         .navbar {
             background: rgba(26,26,26,0.95) !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            top: 36px; /* compensa topbar fixa */
         }
         .navbar-brand {
             font-family: 'Poppins', sans-serif;
@@ -63,12 +43,12 @@
             color: var(--cherry-pink) !important;
         }
         .hero-section {
-    background: linear-gradient(135deg, rgba(255,53,118,0.65) 0%, rgba(255,0,92,0.65) 100%), url('imagens/cherrybombNI.jpeg') center center/cover no-repeat;
-    color: var(--cherry-white);
-    padding: 200px 0 180px 0;
-    position: relative;
-    overflow: hidden;
-}
+            background: linear-gradient(135deg, rgba(255,53,118,0.65) 0%, rgba(255,0,92,0.65) 100%), url('imagens/cherrybombNI.jpeg') center center/cover no-repeat;
+            color: var(--cherry-white);
+            padding: 200px 0 180px 0;
+            position: relative;
+            overflow: hidden;
+        }
         .hero-title {
             font-family: 'Poppins', sans-serif;
             font-size: 3.5rem;
@@ -157,6 +137,7 @@
             height: 120px;
             object-fit: cover;
             border-radius: 12px;
+            max-width: 100%;
         }
         .footer {
             background: var(--cherry-dark);
@@ -177,40 +158,51 @@
         .social-links a:hover {
             color: var(--cherry-pink);
         }
-        /* Botão flutuante WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: #25D366;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(37,211,102,0.35);
-            z-index: 1031;
-            transition: transform .2s, box-shadow .2s;
+        /* Extras da Home */
+        .highlights-section .card {
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(255,53,118,0.08);
+            overflow: hidden;
         }
-        .whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,211,102,0.45); }
+        .highlights-section .card img {
+            height: 180px;
+            object-fit: cover;
+        }
+        .style-guide {
+            background: var(--cherry-white);
+        }
+        .style-guide .guide-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            height: 100%;
+        }
+        .style-guide .guide-card i {
+            color: var(--cherry-pink);
+        }
+        .faq-section .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(255,53,118,0.35);
+        }
+        .faq-section .accordion-button:not(.collapsed) {
+            color: var(--cherry-red);
+            background: rgba(255,53,118,0.06);
+        }
+        /* Correções mobile para evitar overflow lateral */
+        html, body { overflow-x: hidden; }
+        .twentytwenty-container { max-width: 100%; overflow: hidden; }
+        .twentytwenty-container img { width: 100%; height: auto; display: block; }
     </style>
 </head>
 <body>
-    <div class="topbar text-center px-3">
-        <span>
-            Frete grátis acima de R$ 299 • Primeira troca por nossa conta • 6x sem juros
-            <span class="d-none d-sm-inline"> • <a href="https://wa.link/udiiux" target="_blank" rel="noopener">Fale no WhatsApp</a></span>
-        </span>
-    </div>
     <!-- Navbar -->
 
     
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="fas fa-bomb me-2"></i>CHERRY BOMB</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Abrir navegação">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -231,9 +223,70 @@
             <h1 class="hero-title">EXPLODA SEU ESTILO</h1>
             <h2 class="hero-subtitle">ÓCULOS QUE SÃO UMA BOMBA DE ATITUDE</h2>
             <p class="lead mb-4">Descubra o poder das lentes Cherry Bomb: design retrô, tecnologia moderna e muita personalidade.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#lancamentos" class="btn btn-cherry btn-lg" aria-label="Ver lançamentos">Ver Lançamentos</a>
-                <a href="loja.html#productsContainer" class="btn btn-light btn-lg" style="border-radius:50px; font-weight:700;" aria-label="Ver coleção completa">Ver Coleção</a>
+            <a href="#lancamentos" class="btn btn-cherry btn-lg">Ver Lançamentos</a>
+        </div>
+    </section>
+    
+    <!-- Destaques da Semana -->
+    <section id="destaques" class="highlights-section py-5" style="background: var(--cherry-white);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Destaques da Semana</h2>
+            <p class="section-subtitle" data-aos="fade-up">Modelos queridinhos da galera Cherry</p>
+            <div class="row g-4">
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in">
+                    <div class="card h-100">
+                        <img src="imagens/oculos21.jpg" class="card-img-top" alt="Destaque 1">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Cat Eye Cherry</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="card h-100">
+                        <img src="imagens/oculos22.jpg" class="card-img-top" alt="Destaque 2">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Metal Redondo</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card h-100">
+                        <img src="imagens/oculos23.jpg" class="card-img-top" alt="Destaque 3">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Clip-on 2 em 1</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="card h-100">
+                        <img src="imagens/oculos24.jpg" class="card-img-top" alt="Destaque 4">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Sweet Punk</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card h-100">
+                        <img src="imagens/oculos25.jpg" class="card-img-top" alt="Destaque 5">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Square Bold</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="card h-100">
+                        <img src="imagens/oculos26.jpg" class="card-img-top" alt="Destaque 6">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-1">Aviador Clássico</h6>
+                            <a href="loja.html#productsContainer" class="btn btn-cherry btn-sm">Ver</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -242,7 +295,7 @@
 
     <style>
     /* Banner Duplo Par Perfeito - Cherry Bomb Brand */
-    .par-perfeito-banner {
+        .par-perfeito-banner {
       width: 100%;
       min-height: 320px;
       background: linear-gradient(90deg, var(--cherry-pink) 0% 50%, var(--cherry-red) 50% 100%);
@@ -371,15 +424,15 @@
       color: #fff;
     }
     @media (max-width: 900px) {
-      .par-perfeito-banner { flex-direction: column; min-height: unset; border-radius: 0 0 24px 24px; }
-      .par-perfeito-center { order: -1; min-width: 100%; max-width: 100vw; padding: 0; }
-      .par-perfeito-img { margin: 24px auto 0 auto; width: 180px; }
+      .par-perfeito-banner { display: flex; flex-direction: column; min-height: unset; border-radius: 0 0 24px 24px; width: 100%; }
+      .par-perfeito-center { order: -1; min-width: 100%; max-width: 100%; padding: 0; }
+      .par-perfeito-img { margin: 24px auto 0 auto; width: 180px; max-width: 90vw; height: auto; }
       .par-perfeito-main-title { position: static; transform: none; font-size: 1.4rem; margin-bottom: 0.8rem; }
-      .par-perfeito-left, .par-perfeito-right { padding: 30px 5vw; min-width: unset; }
+      .par-perfeito-left, .par-perfeito-right { padding: 30px 5vw; min-width: unset; width: 100%; }
     }
     @media (max-width: 600px) {
       .par-perfeito-banner { border-radius: 0 0 12px 12px; }
-      .par-perfeito-img { width: 120px; }
+      .par-perfeito-img { width: 120px; max-width: 85vw; }
       .par-perfeito-main-title { font-size: 1.05rem; }
       .par-perfeito-title { font-size: 1.1rem; }
     }
@@ -427,12 +480,58 @@
                     </div>
                     <!-- Adicione mais carousel-item para mais lançamentos -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="prev" aria-label="Anterior">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="next" aria-label="Próximo">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselLancamentos" data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Guia de Estilo -->
+    <section id="guia-estilo" class="style-guide py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Guia de Estilo</h2>
+            <p class="section-subtitle" data-aos="fade-up">Combine o formato do seu rosto com o óculos ideal</p>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="guide-card h-100">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-circle me-2"></i>
+                            <h6 class="mb-0">Rosto Redondo</h6>
+                        </div>
+                        <p>Prefira armações quadradas ou retangulares para equilibrar os traços. Modelos com linhas marcadas alongam o visual.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="guide-card h-100">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-square me-2"></i>
+                            <h6 class="mb-0">Rosto Quadrado</h6>
+                        </div>
+                        <p>Armações arredondadas ou ovais suavizam ângulos. Aposte em metal fino e hastes mais delicadas.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="guide-card h-100">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-egg me-2"></i>
+                            <h6 class="mb-0">Rosto Oval</h6>
+                        </div>
+                        <p>Versátil! Combina com quase tudo: aviador, redondo, gatinho… Brinque com cores e espessuras.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="guide-card h-100">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-heart me-2"></i>
+                            <h6 class="mb-0">Rosto Coração</h6>
+                        </div>
+                        <p>Modelos com parte inferior mais larga equilibram: cat eye suave, redondos maiores e clip-on são ótimos.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -440,6 +539,46 @@
     <section class="py-5" style="background: var(--cherry-white);">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Veja o Efeito Cherry Bomb</h2>
+            <p class="section-subtitle" data-aos="fade-up">Arraste para comparar: com e sem nossas lentes especiais</p>
+            <div class="lens-comparison" data-aos="zoom-in">
+                <div class="twentytwenty-container">
+                    <img src="imagens/oculos30.jpg" alt="Óculos sem efeito">
+                    <img src="imagens/oculos31.jpg" alt="Óculos com efeito Cherry Bomb">
+                </div>
+            </div>
+                            </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="faq-section py-5" style="background: var(--cherry-white);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Dúvidas Frequentes</h2>
+            <div class="accordion" id="faqAccordion" data-aos="fade-up">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">As lentes têm proteção UV?</button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Sim, todos os modelos contam com proteção UV400 para bloquear 99–100% dos raios UVA e UVB.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Tem garantia?</button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Garantia de 90 dias contra defeitos de fabricação. Troca grátis na primeira solicitação.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">Como funciona a entrega?</button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Frete grátis acima de R$ 299 para todo o Brasil. Prazo médio de 5 a 10 dias úteis.</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Benefícios -->
@@ -515,11 +654,11 @@
             <h2 class="section-title" data-aos="fade-up">#CherryBombNoLook</h2>
             <p class="section-subtitle" data-aos="fade-up">Veja como a galera está usando Cherry Bomb</p>
             <div class="instagram-feed" data-aos="zoom-in">
-                <img src="imagens/cliente1.jpeg" alt="Instagram 1">
-                <img src="imagens/cliente2.jpeg" alt="Instagram 2">
-                <img src="imagens/cliente3.jpeg" alt="Instagram 3">
-                <img src="imagens/cliente4.jpeg" alt="Instagram 4">
-                <img src="imagens/cliente5.jpeg" alt="Instagram 5">
+                <img src="imagens/insta1.jpg" alt="Instagram 1">
+                <img src="imagens/insta2.jpg" alt="Instagram 2">
+                <img src="imagens/insta3.jpg" alt="Instagram 3">
+                <img src="imagens/insta4.jpg" alt="Instagram 4">
+                <img src="imagens/insta5.jpg" alt="Instagram 5">
             </div>
         </div>
     </section>
@@ -560,23 +699,17 @@
             </div>
         </div>
     </footer>
-
-    <a class="whatsapp-float" href="https://wa.link/udiiux" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-        <i class="fab fa-whatsapp fa-lg"></i>
-    </a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://unpkg.com/twentytwenty/js/jquery.twentytwenty.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/twentytwenty/js/jquery.twentytwenty.js"></script>
     <script>
       AOS.init({ duration: 1200 });
       $(function(){
-  $(".par-perfeito-twentytwenty").twentytwenty({
-    default_offset_pct: 0.5
-  });
-});
+        $(".twentytwenty-container").twentytwenty({
+          default_offset_pct: 0.5
+        });
+      });
     </script>
 </body>
 </html>
-
-
