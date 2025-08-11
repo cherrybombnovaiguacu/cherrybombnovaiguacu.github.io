@@ -30,7 +30,6 @@
         .navbar {
             background: var(--cherry-dark) !important;
             padding: 1rem 0;
-            top: 36px; /* espaço para topbar */
         }
 
         .navbar-brand {
@@ -98,39 +97,8 @@
             justify-content: center;
             color: var(--cherry-white);
             font-size: 4rem;
-            position: relative;
-        }
-        /* Hover crossfade between main and hover images */
-        .product-image img {
-            position: absolute;
-            inset: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity .35s ease, transform .35s ease;
-        }
-        .product-image img.hover {
-            opacity: 0;
-        }
-        .product-card:hover .product-image img.hover {
-            opacity: 1;
-        }
-        .product-card:hover .product-image img.main {
-            opacity: 0;
-        }
-
-        .ribbon {
-            position: absolute;
-            top: 12px;
-            left: -40px;
-            background: var(--cherry-pink);
-            color: #fff;
-            padding: 6px 48px;
-            transform: rotate(-45deg);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            box-shadow: 0 6px 14px rgba(255,53,118,0.25);
+            overflow: hidden;
         }
 
         .price {
@@ -193,6 +161,10 @@
             border-color: var(--cherry-pink);
             color: var(--cherry-white);
         }
+        /* Correções mobile para evitar overflow lateral */
+        html, body { overflow-x: hidden; }
+        img, svg { max-width: 100%; height: auto; }
+        .row { --bs-gutter-x: 1rem; }
 
         .footer {
             background: var(--cherry-dark);
@@ -223,60 +195,41 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Topbar promocional */
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(90deg, #FF3576 0%, #FF005C 100%);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.03em;
-            z-index: 1031;
+        /* Botão animado de finalização / feedback de carrinho */
+        .buy-btn{
+          position: relative;
+          padding: 12px 20px;
+          border-radius: 12px;
+          background: linear-gradient(180deg, #FF3576, #D82D66);
+          color: #fff;
+          border: none;
+          font-size: 16px;
+          cursor: pointer;
+          overflow: visible;
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          box-shadow: 0 8px 20px rgba(255, 53, 118, 0.3);
+          transition: background 0.3s ease;
         }
-        .topbar a { color: #fff; text-decoration: underline; }
-
-        /* Chips de filtro */
-        .chip { 
-            display: inline-flex; 
-            align-items: center; 
-            padding: 6px 14px; 
-            border-radius: 999px; 
-            background: #fff; 
-            border: 2px solid #eee; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            cursor: pointer; 
-            transition: all .2s; 
-            user-select: none;
+        .buy-btn:hover { background: linear-gradient(180deg, #D82D66, #FF3576); }
+        .btn-text { transition: opacity .25s ease, transform .25s ease; }
+        .scene { width: 200px; height: 165px; overflow: visible; }
+        .buy-btn.placing .glasses { animation: dropIn 1s ease forwards; }
+        .buy-btn.placing .box-lid { animation: lidClose 0.5s ease 1s forwards; }
+        .buy-btn.success .check { animation: popIn .45s cubic-bezier(.2,.85,.25,1) .3s forwards; }
+        .buy-btn.placing .btn-text { opacity: 0; transform: translateY(-6px); }
+        .buy-btn.success { background: linear-gradient(180deg,#2a9fd6,#1f7fb2); }
+        @keyframes dropIn {
+          0% { transform: translate(70px,40px); opacity: 1; }
+          70% { transform: translate(70px,90px); opacity: 1; }
+          100% { transform: translate(70px,110px); opacity: 0; }
         }
-        .chip:hover { border-color: var(--cherry-pink); box-shadow: 0 4px 14px rgba(255,53,118,0.15); }
-        .chip.active { background: linear-gradient(135deg, rgba(255,53,118,0.12), rgba(255,0,92,0.12)); border-color: var(--cherry-pink); color: var(--cherry-dark); }
-
-        /* Botão flutuante WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: #25D366;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(37,211,102,0.35);
-            z-index: 1031;
-            transition: transform .2s, box-shadow .2s;
-        }
-        .whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,211,102,0.45); }
+        @keyframes lidClose { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(-110deg); } }
+        @keyframes popIn { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+        /* Versão mini como toast flutuante */
+        .buy-toast { position: fixed; bottom: 20px; right: 20px; z-index: 1060; padding: 10px 16px; max-width: calc(100vw - 40px); }
+        .buy-toast .scene { width: 160px; height: 130px; }
 
         @media (max-width: 768px) {
             .header-section {
@@ -286,12 +239,6 @@
     </style>
 </head>
 <body>
-    <div class="topbar text-center px-3">
-        <span>
-            Frete grátis acima de R$ 299 • Primeira troca por nossa conta • 6x sem juros
-            <span class="d-none d-sm-inline"> • <a href="https://wa.link/udiiux" target="_blank" rel="noopener">Fale no WhatsApp</a></span>
-        </span>
-    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -313,7 +260,7 @@
                         <a class="nav-link" href="https://wa.link/udiiux">Contato</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="#" onclick="showCart()" aria-label="Abrir carrinho">
+                        <a class="nav-link position-relative" href="#" onclick="showCart()">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-badge" id="cartCount">0</span>
                         </a>
@@ -322,6 +269,18 @@
             </div>
         </div>
     </nav>
+
+    <!-- Banner de Categorias Cherry Bomb -->
+    <div class="perfect-match-banner container my-4 d-flex justify-content-center gap-4 flex-wrap">
+        <a href="https://loja.chillibeans.com.br/oculos-de-sol" class="perfect-match-banner-sunglass d-flex align-items-center justify-content-center flex-column text-decoration-none">
+            <span class="perfect-match-icon"><i class="fas fa-sunglasses"></i></span>
+            <span class="perfect-match-text">Óculos de Sol</span>
+        </a>
+        <a href="https://loja.chillibeans.com.br/armacoes-para-oculos-de-grau" class="perfect-match-banner-eyeglasses d-flex align-items-center justify-content-center flex-column text-decoration-none">
+            <span class="perfect-match-icon"><i class="fas fa-glasses"></i></span>
+            <span class="perfect-match-text">Óculos de Grau</span>
+        </a>
+    </div>
 
     <!-- Header -->
     <section class="header-section">
@@ -336,38 +295,25 @@
     <!-- Products Section -->
     <section class="py-5" style="background: var(--cherry-gray);">
         <div class="container">
-            <div class="row align-items-center g-3 mb-4">
-                <div class="col-md-5">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text" style="border-radius: 999px 0 0 999px; border: 2px solid #eee; background:#fff;"><i class="fas fa-search"></i></span>
-                        <input id="searchInput" type="text" class="form-control" placeholder="Busque por modelo, cor, estilo..." style="border-radius: 0 999px 999px 0; border: 2px solid #eee;">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div id="filterChips" class="d-flex gap-2 flex-wrap">
-                        <span class="chip active" data-filter="todos">Todos</span>
-                        <span class="chip" data-filter="gatinho">Gatinho</span>
-                        <span class="chip" data-filter="aviador">Aviador</span>
-                        <span class="chip" data-filter="esportivo">Esportivo</span>
-                        <span class="chip" data-filter="retro">Retrô</span>
-                        <span class="chip" data-filter="premium">Premium</span>
-                    </div>
-                </div>
-                <div class="col-md-3 text-md-end">
-                    <select id="sortSelect" class="form-select form-select-lg">
-                        <option value="relevance">Ordenar: Relevância</option>
-                        <option value="price_asc">Menor preço</option>
-                        <option value="price_desc">Maior preço</option>
-                        <option value="newest">Mais novos</option>
+            <!-- Filtros e busca -->
+            <div class="row mb-4">
+                <div class="col-md-4 mb-2">
+                    <select id="categoryFilter" class="form-select" onchange="filtrarProdutos()">
+                        <option value="">Todas as Categorias</option>
+                        <option value="Lançamentos">Lançamentos</option>
+                        <option value="Clássicos">Clássicos</option>
+                        <option value="2 em 1">2 em 1</option>
+                        <option value="Gatinho">Gatinho</option>
+                        <option value="Redondo">Redondo</option>
+                        <option value="Clip-on">Clip-on</option>
                     </select>
+                </div>
+                <div class="col-md-8 mb-2">
+                    <input id="searchInput" type="text" class="form-control" placeholder="Buscar óculos..." oninput="filtrarProdutos()">
                 </div>
             </div>
             <div class="row g-4" id="productsContainer">
-                <!-- Products will be loaded here -->
-            </div>
-            <div id="noResults" class="text-center text-muted py-5 d-none">
-                <i class="fas fa-face-frown fa-2x mb-3"></i>
-                <p>Nenhum produto encontrado para sua busca/filtro.</p>
+                <!-- Produtos serão carregados aqui -->
             </div>
         </div>
     </section>
@@ -380,7 +326,7 @@
                     <h5 class="modal-title">
                         <i class="fas fa-shopping-cart me-2"></i>Carrinho de Compras
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div id="cartItems">
@@ -389,8 +335,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
-                    <button type="button" class="btn btn-cherry" onclick="proceedToCheckout()">
-                        <i class="fas fa-credit-card me-2"></i>Finalizar Compra
+                    <button type="button" class="buy-btn" id="checkoutAnimatedBtn" aria-live="polite">
+                      <span class="btn-text">Finalizar Compra</span>
+                      <svg class="scene" viewBox="0 0 220 180" role="img" aria-hidden="true">
+                        <defs>
+                          <clipPath id="box-clip">
+                            <rect x="40" y="80" width="140" height="50" />
+                          </clipPath>
+                        </defs>
+                        <rect class="box-base" x="40" y="80" width="140" height="60" rx="6" ry="6" fill="#e6d8c3" stroke="#cbb29a" stroke-width="2"/>
+                        <rect x="46" y="86" width="128" height="48" fill="#f6f1e8"/>
+                        <rect class="box-lid" x="30" y="62" width="160" height="18" rx="6" ry="6" fill="#d6c2a6" stroke="#cbb29a" stroke-width="2" transform-origin="110px 71px"/>
+                        <g clip-path="url(#box-clip)">
+                          <g class="glasses" transform="translate(70,40)">
+                            <line x1="2" y1="24" x2="-12" y2="18" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="118" y1="24" x2="132" y2="18" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="30" cy="22" r="16" fill="#fff" stroke="#222" stroke-width="3" />
+                            <circle cx="90" cy="22" r="16" fill="#fff" stroke="#222" stroke-width="3" />
+                            <rect x="54" y="18" width="12" height="6" rx="2" fill="#222" />
+                          </g>
+                        </g>
+                        <ellipse cx="110" cy="150" rx="70" ry="8" fill="rgba(0,0,0,0.08)"/>
+                        <g class="check" transform="translate(110,40)" opacity="0">
+                          <circle cx="0" cy="0" r="22" fill="#2ecc71"/>
+                          <path d="M-8 0 L-2 6 L8 -6" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </g>
+                      </svg>
                     </button>
                 </div>
             </div>
@@ -439,15 +409,11 @@
             <hr class="my-4" style="border-color: #333;">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="mb-0">© 2025 CHERRYBOMB. TODOS OS DIREITOS RESERVADOS.</p>
+                    <p class="mb-0"> 2025 CHERRYBOMB. TODOS OS DIREITOS RESERVADOS.</p>
                 </div>
             </div>
         </div>
     </footer>
-
-    <a class="whatsapp-float" href="https://wa.link/udiiux" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-        <i class="fab fa-whatsapp fa-lg"></i>
-    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -456,378 +422,76 @@
         duration: 1200 // duração em milissegundos (1.2 segundos)
       });
     </script>
+    <script src="produtos.js"></script>
     <script>
-        // Sample products data - Óculos Cherry Bomb
-        const products = [
-            {
-                id: 1,
-                name: "Gatinhos Cherry Bomb",
-                price: 129.90,
-                image: "imagens/Oculos01.jpg",
-                hoverImage: "imagens/oculos02.jpg",
-                description: "Modelos gatinho - Os descolados"
-            },
-            {
-                id: 2,
-                name: "Armações de Metal",
-                price: 149.90,
-                image: "imagens/oculos02.jpg",
-                hoverImage: "imagens/oculos03.png",
-                description: "Óculos escuros de metal - Clássicos"
-            },
-            {
-                id: 3,
-                name: "Clip-on Cherry Bomb",
-                price: 179.90,
-                image: "imagens/oculos03.png",
-                hoverImage: "imagens/oculos04.jpg",
-                description: "2 em 1 - Rock n roll"
-            },
-            {
-                id: 4,
-                name: "Lentes Polarizadas",
-                price: 199.90,
-                image: "imagens/oculos04.jpg",
-                hoverImage: "imagens/oculos05.jpg",
-                description: "Proteção UV total - Alta qualidade"
-            },
-            {
-                id: 5,
-                name: "Modelo Vintage",
-                price: 159.90,
-                image: "imagens/oculos05.jpg",
-                hoverImage: "imagens/oculos06.jpg",
-                description: "Anos 70/80 - Estilo retrô"
-            },
-            {
-                id: 6,
-                name: "Óculos Modernos",
-                price: 139.90,
-                image: "imagens/oculos06.jpg",
-                hoverImage: "imagens/oculos07.jpg",
-                description: "Design atual - Tecnologia avançada"
-            },
-            {
-                id: 7,
-                name: "Coleção Limited",
-                price: 229.90,
-                image: "imagens/oculos07.jpg",
-                hoverImage: "imagens/oculos08.jpg",
-                description: "Edição limitada - Exclusivo"
-            },
-            {
-                id: 8,
-                name: "Óculos Esportivos",
-                price: 189.90,
-                image: "imagens/oculos08.jpg",
-                hoverImage: "imagens/oculos09.jpg",
-                description: "Performance e estilo - Atividade física"
-            },
-            {
-                id: 9,
-                name: "Aviador Cherry Bomb",
-                price: 169.90,
-                image: "imagens/oculos09.jpg",
-                hoverImage: "imagens/oculos10.jpg",
-                description: "Clássico aviador com lentes polarizadas"
-            },
-            {
-                id: 10,
-                name: "Retrô Redondo",
-                price: 149.90,
-                image: "imagens/oculos10.jpg",
-                hoverImage: "imagens/oculos12.jpg",
-                description: "Estilo anos 60 com armação redonda"
-            },
-            {
-                id: 11,
-                name: "Óculos Premium",
-                price: 249.90,
-                image: "imagens/oculos12.jpg",
-                hoverImage: "imagens/oculos 13.jpg",
-                description: "Qualidade premium - Máximo conforto"
-            },
-            {
-                id: 12,
-                name: "Modelo Exclusivo",
-                price: 279.90,
-                image: "imagens/oculos 13.jpg",
-                hoverImage: "imagens/oculos14.jpg",
-                description: "Design exclusivo - Edição especial"
-            },
-            {
-                id: 13,
-                name: "Óculos Clássico",
-                price: 189.90,
-                image: "imagens/oculos14.jpg",
-                hoverImage: "imagens/oculos15.jpg",
-                description: "Estilo atemporal - Sempre na moda"
-            },
-            {
-                id: 14,
-                name: "Aviador Premium",
-                price: 219.90,
-                image: "imagens/oculos15.jpg",
-                hoverImage: "imagens/oculos16.jpg",
-                description: "Aviador premium com lentes especiais"
-            },
-            {
-                id: 15,
-                name: "Óculos Esportivo Pro",
-                price: 259.90,
-                image: "imagens/oculos16.jpg",
-                hoverImage: "imagens/oculos 17.jpg",
-                description: "Performance profissional - Alta tecnologia"
-            },
-            {
-                id: 16,
-                name: "Modelo Elegante",
-                price: 199.90,
-                image: "imagens/oculos 17.jpg",
-                hoverImage: "imagens/oculos18.jpg",
-                description: "Elegância e sofisticação - Para ocasiões especiais"
-            },
-            {
-                id: 17,
-                name: "Óculos Casual",
-                price: 169.90,
-                image: "imagens/oculos18.jpg",
-                hoverImage: "imagens/oculos19.jpg",
-                description: "Estilo casual - Perfeito para o dia a dia"
-            },
-            {
-                id: 18,
-                name: "Aviador Sport",
-                price: 239.90,
-                image: "imagens/oculos19.jpg",
-                hoverImage: "imagens/oculos20.jpg",
-                description: "Aviador esportivo - Resistente e moderno"
-            },
-            {
-                id: 19,
-                name: "Óculos Fashion",
-                price: 189.90,
-                image: "imagens/oculos20.jpg",
-                hoverImage: "imagens/oculos21.jpg",
-                description: "Tendência fashion - Design contemporâneo"
-            },
-            {
-                id: 20,
-                name: "Coleção Cherry Bomb",
-                price: 219.90,
-                image: "imagens/oculos 13.jpg",
-                hoverImage: "imagens/oculos21.jpg",
-                description: "Coleção especial Cherry Bomb - Única e exclusiva"
-            },
-            {
-                id: 21,
-                name: "Cherry Cat Eye",
-                price: 219.90,
-                image: "imagens/oculos21.jpg",
-                hoverImage: "imagens/oculos22.jpg",
-                description: "Estilo retrô com ousadia felina"
-            },
-            {
-                id: 22,
-                name: "Bombshell Retrô",
-                price: 219.90,
-                image: "imagens/oculos22.jpg",
-                hoverImage: "imagens/oculos23.jpg",
-                description: "Clássico repaginado, puro charme"
-            },
-            {
-                id: 23,
-                name: "Sweet Punk",
-                price: 219.90,
-                image: "imagens/oculos23.jpg",
-                hoverImage: "imagens/oculos24.jpg",
-                description: "Atitude Cherry com toque rebelde"
-            },
-            {
-                id: 24,
-                name: "Cherry Glam",
-                price: 219.90,
-                image: "imagens/oculos24.jpg",
-                hoverImage: "imagens/oculos25.jpg",
-                description: "Brilho e glamour para arrasar"
-            },
-            {
-                id: 25,
-                name: "Pop Star Bomb",
-                price: 219.90,
-                image: "imagens/oculos25.jpg",
-                hoverImage: "imagens/oculos26.jpg",
-                description: "Inspire-se nas divas do pop"
-            },
-            {
-                id: 26,
-                name: "Cherry Wave",
-                price: 219.90,
-                image: "imagens/oculos26.jpg",
-                hoverImage: "imagens/oculos27.jpg",
-                description: "Ondas de estilo e personalidade"
-            },
-            {
-                id: 27,
-                name: "Disco Fever",
-                price: 219.90,
-                image: "imagens/oculos27.jpg",
-                hoverImage: "imagens/oculos28.jpg",
-                description: "Direto dos anos 70 para seu look"
-            },
-            {
-                id: 28,
-                name: "Cherry Stardust",
-                price: 219.90,
-                image: "imagens/oculos28.jpg",
-                hoverImage: "imagens/oculos29.jpg",
-                description: "Brilhe como uma estrela Cherry"
-            },
-            {
-                id: 29,
-                name: "Rockabilly Bomb",
-                price: 219.90,
-                image: "imagens/oculos29.jpg",
-                hoverImage: "imagens/oculos30.jpg",
-                description: "Vintage com pegada rock'n'roll"
-            },
-            {
-                id: 30,
-                name: "Cherry Groove",
-                price: 219.90,
-                image: "imagens/oculos30.jpg",
-                hoverImage: "imagens/oculos31.jpg",
-                description: "Entre no ritmo do estilo Cherry"
-            },
-            {
-                id: 31,
-                name: "Funky Cherry",
-                price: 219.90,
-                image: "imagens/oculos31.jpg",
-                hoverImage: "imagens/oculos32.jpg",
-                description: "Óculos para quem tem atitude e cor"
-            },
-            {
-                id: 32,
-                name: "Cherry Dream",
-                price: 219.90,
-                image: "imagens/oculos32.jpg",
-                hoverImage: "imagens/oculos31.jpg",
-                description: "Para sonhar e brilhar com Cherry Bomb"
-            },
-        ];
-
         let cart = [];
-        let activeFilter = 'todos';
-        let searchQuery = '';
-        let sortKey = 'relevance';
 
-        // Helpers: storage
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-        function loadCartFromStorage() {
-            const data = localStorage.getItem('cart');
-            if (data) {
-                try { cart = JSON.parse(data) || []; } catch (e) { cart = []; }
-            }
-            updateCartCount();
+        // Carregar produtos do arquivo externo
+        let produtosFiltrados = [];
+        function filtrarProdutos() {
+            const categoria = document.getElementById('categoryFilter').value;
+            const busca = document.getElementById('searchInput').value.toLowerCase();
+            produtosFiltrados = produtos.filter(p => {
+                const matchCategoria = !categoria || p.categoria === categoria || p.tipo === categoria;
+                const matchBusca = !busca || p.nome.toLowerCase().includes(busca) || (p.tipo && p.tipo.toLowerCase().includes(busca));
+                return matchCategoria && matchBusca;
+            });
+            loadProducts();
         }
 
-        // UI: filtros/busca/ordenação
-        function normalize(str) {
-            return (str || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
-        }
-        function productMatchesFilter(product) {
-            const name = normalize(product.name);
-            const desc = normalize(product.description);
-            const q = normalize(searchQuery);
-            const matchesQuery = !q || name.includes(q) || desc.includes(q);
-            if (activeFilter === 'todos') return matchesQuery;
-            const map = {
-                gatinho: ['gatin', 'cat eye'],
-                aviador: ['aviador'],
-                esportivo: ['esport'],
-                retro: ['retr', 'vint', 'rockabilly', 'disco'],
-                premium: ['premium', 'exclusivo', 'limited']
-            };
-            const keys = map[activeFilter] || [];
-            const matchesChip = keys.some(k => name.includes(k) || desc.includes(k));
-            return matchesQuery && matchesChip;
-        }
-        function sortProducts(list) {
-            const arr = [...list];
-            if (sortKey === 'price_asc') arr.sort((a,b) => a.price - b.price);
-            else if (sortKey === 'price_desc') arr.sort((a,b) => b.price - a.price);
-            else if (sortKey === 'newest') arr.sort((a,b) => b.id - a.id);
-            return arr;
-        }
-        function getFilteredProducts() {
-            const filtered = products.filter(productMatchesFilter);
-            return sortProducts(filtered);
-        }
-
-        // Load products
         function loadProducts() {
             const container = document.getElementById('productsContainer');
-            const noResults = document.getElementById('noResults');
             container.innerHTML = '';
-
-            const list = getFilteredProducts();
-            if (list.length === 0) {
-                noResults.classList.remove('d-none');
+            const lista = produtosFiltrados.length > 0 ? produtosFiltrados : produtos;
+            if(lista.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center text-muted">Nenhum produto encontrado.</div>';
                 return;
-            } else {
-                noResults.classList.add('d-none');
             }
-
-            list.forEach((product, idx) => {
-                const isNew = product.id >= products.length - 5; // heurística simples
-                const productCard = `
-                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${(idx%4)*100}">
-                        <div class="card product-card h-100">
-                            <div class="product-image">
-                                ${isNew ? '<span class="ribbon">NOVO</span>' : ''}
-                                <img class="main" src="${product.image}" alt="${product.name}" loading="lazy">
-                                <img class="hover" src="${product.hoverImage || product.image}" alt="${product.name} - hover" loading="lazy">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold">${product.name}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <div class="price mt-auto mb-3">R$ ${product.price.toFixed(2)}</div>
-                                <button class="btn btn-cherry" onclick="addToCart(${product.id})">
-                                    <i class="fas fa-cart-plus me-2"></i>Adicionar ao Carrinho
-                                </button>
-                            </div>
-                        </div>
+            lista.forEach(produto => {
+                container.innerHTML += `
+                <div class="col-md-4">
+                    <div class="product-card p-3 text-center h-100">
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="img-fluid product-image mb-3" style="max-height:220px;object-fit:cover;">
+                        <h5 class="mb-2">${produto.nome}</h5>
+                        <span class="badge bg-secondary mb-2">${produto.categoria}</span>
+                        <div class="price mb-3">R$ ${produto.preco.toFixed(2)}</div>
+                        <button class="btn btn-cherry w-100" onclick="addToCart(${produto.id})"><i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho</button>
                     </div>
+                </div>
                 `;
-                container.innerHTML += productCard;
             });
-            if (window.AOS) { AOS.refreshHard(); }
         }
 
-        // Add to cart
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                const existingItem = cart.find(item => item.id === productId);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({ ...product, quantity: 1 });
-                }
-                saveCart();
-                updateCartCount();
-                showNotification('Óculos adicionado ao carrinho!');
+        document.addEventListener('DOMContentLoaded', function() {
+            produtosFiltrados = produtos;
+            loadProducts();
+            updateCartCount();
+        });
+
+        // Adicionar ao carrinho
+        function addToCart(produtoId) {
+            const produto = produtos.find(p => p.id === produtoId);
+            if (!produto) return;
+            const itemExistente = cart.find(item => item.id === produtoId);
+            if (itemExistente) {
+                itemExistente.quantity += 1;
+            } else {
+                cart.push({
+                    id: produto.id,
+                    name: produto.nome,
+                    price: produto.preco,
+                    quantity: 1
+                });
             }
+            updateCartCount();
+            showNotification('Produto adicionado ao carrinho!');
+            showAddToCartAnimation();
         }
 
         // Update cart count
         function updateCartCount() {
             const count = cart.reduce((total, item) => total + item.quantity, 0);
-            const el = document.getElementById('cartCount');
-            if (el) el.textContent = count;
+            document.getElementById('cartCount').textContent = count;
         }
 
         // Show cart
@@ -868,32 +532,51 @@
                 
                 cartItems.innerHTML = cartHTML;
             }
-            saveCart();
+            
             new bootstrap.Modal(document.getElementById('cartModal')).show();
         }
 
         // Update quantity
-        function updateQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
+        function updateQuantity(produtoId, change) {
+            const item = cart.find(item => item.id === produtoId);
             if (item) {
                 item.quantity += change;
                 if (item.quantity <= 0) {
-                    cart = cart.filter(item => item.id !== productId);
+                    cart = cart.filter(item => item.id !== produtoId);
                 }
-                saveCart();
                 updateCartCount();
                 showCart(); // Refresh cart display
             }
         }
 
-        // Proceed to checkout (redireciona para checkout interno com carrinho salvo)
+        // Proceed to checkout
         function proceedToCheckout() {
             if (cart.length === 0) {
                 alert('Adicione óculos ao carrinho primeiro!');
                 return;
             }
-            saveCart();
-            window.location.href = 'checkout.html';
+
+            // Monte o array de produtos no formato esperado pela InfinitePay
+            const items = cart.map(item => ({
+                name: item.name,
+                price: Math.round(item.price * 100), // preço em centavos
+                quantity: item.quantity
+            }));
+
+            // Handle da sua conta InfinitePay
+            const handle = "cherrybombnovaiguacu"; // Substitua pelo seu handle InfinitePay
+
+            // Número do pedido (pode ser um timestamp)
+            const order_nsu = Date.now();
+
+            // URL de redirecionamento após o pagamento
+            const redirect_url = "https://novaiguacu.cherrybombloja.com.br/sucesso.html";
+
+            // Monta o link integrado
+            const linkPagamento = `https://checkout.infinitepay.io/${handle}?items=${encodeURIComponent(JSON.stringify(items))}&order_nsu=${order_nsu}&redirect_url=${encodeURIComponent(redirect_url)}`;
+
+            // Redireciona para o checkout da InfinitePay
+            window.location.href = linkPagamento;
         }
 
         // Show notification
@@ -903,7 +586,7 @@
             notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
             notification.innerHTML = `
                 <i class="fas fa-check-circle me-2"></i>${message}
-                <button type="button" class="btn-close ms-2" onclick="this.parentElement.remove()" aria-label="Fechar"></button>
+                <button type="button" class="btn-close ms-2" onclick="this.parentElement.remove()"></button>
             `;
             document.body.appendChild(notification);
             
@@ -914,42 +597,95 @@
             }, 3000);
         }
 
-        // Event bindings filtros/busca/ordem e filtro por URL
-        function bindFilters() {
-            const searchEl = document.getElementById('searchInput');
-            const sortEl = document.getElementById('sortSelect');
-            const chips = Array.from(document.querySelectorAll('#filterChips .chip'));
-
-            searchEl.addEventListener('input', (e) => {
-                searchQuery = e.target.value || '';
-                loadProducts();
-            });
-            sortEl.addEventListener('change', (e) => {
-                sortKey = e.target.value;
-                loadProducts();
-            });
-            chips.forEach(ch => ch.addEventListener('click', () => {
-                chips.forEach(c => c.classList.remove('active'));
-                ch.classList.add('active');
-                activeFilter = ch.getAttribute('data-filter') || 'todos';
-                loadProducts();
-            }));
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const preset = urlParams.get('filter');
-            if (preset) {
-                const target = chips.find(c => c.getAttribute('data-filter') === preset.toLowerCase());
-                if (target) target.click();
-            }
+        // Animação do botão (reutilizável)
+        function animateBuyButton(buttonElement, options = {}) {
+            const messages = {
+                preparing: options.preparingText || 'Preparando pedido...',
+                success: options.successText || 'Pedido Confirmado!',
+                reset: options.resetText || 'Finalizar Compra'
+            };
+            const btnText = buttonElement.querySelector('.btn-text');
+            if (buttonElement.classList.contains('placing')) return;
+            buttonElement.classList.remove('success');
+            buttonElement.classList.add('placing');
+            if (btnText) btnText.textContent = messages.preparing;
+            setTimeout(() => {
+                buttonElement.classList.remove('placing');
+                buttonElement.classList.add('success');
+                if (btnText) btnText.textContent = messages.success;
+                if (typeof options.onSuccess === 'function') options.onSuccess();
+            }, 1800);
+            setTimeout(() => {
+                buttonElement.classList.remove('success');
+                if (btnText) btnText.textContent = messages.reset;
+                if (typeof options.onReset === 'function') options.onReset();
+            }, 4000);
         }
 
-        // Initialize page
+        // Toast animado ao adicionar no carrinho
+        function showAddToCartAnimation() {
+            const uniqueId = 'box-clip-' + Date.now();
+            const toast = document.createElement('div');
+            toast.className = 'buy-btn buy-toast';
+            toast.setAttribute('aria-live', 'polite');
+            toast.innerHTML = `
+              <span class="btn-text">Adicionado ao carrinho!</span>
+              <svg class="scene" viewBox="0 0 220 180" role="img" aria-hidden="true">
+                <defs>
+                  <clipPath id="${uniqueId}">
+                    <rect x="40" y="80" width="140" height="50" />
+                  </clipPath>
+                </defs>
+                <rect class="box-base" x="40" y="80" width="140" height="60" rx="6" ry="6" fill="#e6d8c3" stroke="#cbb29a" stroke-width="2"/>
+                <rect x="46" y="86" width="128" height="48" fill="#f6f1e8"/>
+                <rect class="box-lid" x="30" y="62" width="160" height="18" rx="6" ry="6" fill="#d6c2a6" stroke="#cbb29a" stroke-width="2" transform-origin="110px 71px"/>
+                <g clip-path="url(#${uniqueId})">
+                  <g class="glasses" transform="translate(70,40)">
+                    <line x1="2" y1="24" x2="-12" y2="18" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="118" y1="24" x2="132" y2="18" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="30" cy="22" r="16" fill="#fff" stroke="#222" stroke-width="3" />
+                    <circle cx="90" cy="22" r="16" fill="#fff" stroke="#222" stroke-width="3" />
+                    <rect x="54" y="18" width="12" height="6" rx="2" fill="#222" />
+                  </g>
+                </g>
+                <ellipse cx="110" cy="150" rx="70" ry="8" fill="rgba(0,0,0,0.08)"/>
+                <g class="check" transform="translate(110,40)" opacity="0">
+                  <circle cx="0" cy="0" r="22" fill="#2ecc71"/>
+                  <path d="M-8 0 L-2 6 L8 -6" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </g>
+              </svg>
+            `;
+            document.body.appendChild(toast);
+            // Clique abre o carrinho
+            toast.addEventListener('click', () => showCart());
+            animateBuyButton(toast, {
+                preparingText: 'Guardando no carrinho...',
+                successText: 'Item adicionado! Ver carrinho',
+                resetText: 'Finalizar Compra',
+                onReset: () => {
+                    if (toast.parentElement) toast.remove();
+                }
+            });
+        }
+
+        // Liga o botão animado do modal ao checkout
         document.addEventListener('DOMContentLoaded', function() {
-            loadCartFromStorage();
-            bindFilters();
-            loadProducts();
+            const checkoutBtn = document.getElementById('checkoutAnimatedBtn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => {
+                    if (cart.length === 0) {
+                        alert('Adicione óculos ao carrinho primeiro!');
+                        return;
+                    }
+                    animateBuyButton(checkoutBtn, {
+                        onSuccess: () => {
+                            // Aguardar pequena margem para o check aparecer
+                            setTimeout(() => proceedToCheckout(), 300);
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
 </html>
-
