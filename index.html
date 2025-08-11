@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- <link href="https://unpkg.com/twentytwenty/css/twentytwenty.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/twentytwenty/css/twentytwenty.css" rel="stylesheet">
     <style>
         :root {
             --cherry-pink: #FF3576;
@@ -97,7 +97,7 @@
             box-shadow: 0 6px 24px rgba(255,53,118,0.08);
         }
         .lens-comparison {
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto 3rem auto;
         }
         .benefits-section {
@@ -541,9 +541,9 @@
             <h2 class="section-title" data-aos="fade-up">Veja o Efeito Cherry Bomb</h2>
             <p class="section-subtitle" data-aos="fade-up">Arraste para comparar: com e sem nossas lentes especiais</p>
             <div class="lens-comparison" data-aos="zoom-in">
-                <div class="twentytwenty-container">
-                    <img src="imagens/oculos30.jpg" alt="Óculos sem efeito">
-                    <img src="imagens/oculos31.jpg" alt="Óculos com efeito Cherry Bomb">
+                <div class="twentytwenty-container" style="max-width: 560px; margin: 0 auto;">
+                    <img src="imagens/oculos30.jpg" alt="Óculos sem efeito" />
+                    <img src="imagens/oculos31.jpg" alt="Óculos com efeito Cherry Bomb" />
                 </div>
             </div>
                             </div>
@@ -702,12 +702,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/twentytwenty/js/jquery.twentytwenty.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.event.move/2.0.0/jquery.event.move.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/1.0.0/jquery.twentytwenty.min.js"></script>
     <script>
       AOS.init({ duration: 1200 });
-      $(function(){
+      $(window).on('load', function(){
         $(".twentytwenty-container").twentytwenty({
-          default_offset_pct: 0.5
+          default_offset_pct: 0.5,
+          no_overlay: false,
+          move_slider_on_hover: false
         });
       });
     </script>
